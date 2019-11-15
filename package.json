@@ -7,10 +7,12 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
+    "testdev": "jest --watch",
     "lint": "eslint .",
     "postinstall": "jetify"
   },
   "dependencies": {
+    "native-base": "^2.13.8",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-native": "0.61.4",
@@ -24,6 +26,9 @@
     "@babel/core": "^7.7.2",
     "@babel/runtime": "^7.7.2",
     "@react-native-community/eslint-config": "^0.0.5",
+    "@testing-library/jest-native": "^3.0.2",
+    "@testing-library/react-native": "^5.0.1",
+    "@types/jest": "^24.0.23",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-plugin-root-import": "^6.4.1",
@@ -37,12 +42,32 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^24.9.0",
+    "jest-styled-components": "^6.3.4",
     "jetifier": "^1.6.4",
     "metro-react-native-babel-preset": "^0.57.0",
     "prettier": "^1.19.1",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "@testing-library/react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "!src/services/api.js"
+    ],
+    "coverageDirectory": "__tests__/coverage",
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!native-base-shoutem-theme|react-native-easy-grid|react-native|react-navigation|expo)"
+    ]
   }
 }

@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     es6: true,
+    jest: true,
   },
   extends: [
     'airbnb',
@@ -28,6 +29,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'no-console': ['error', {allow: ['tron']}],
   },
   settings: {
